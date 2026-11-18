@@ -6,7 +6,10 @@ import Search from "./Search";
 function PlantPage() {
   const [plants, setPlants] = useState([]);
 
-  // Fetch all plants from the backend on initial mount
+function handleAddPlant(newPlant) {
+    setPlants((prevPlants) => [...prevPlants, newPlant]);
+  }
+
   useEffect(() => {
     fetch("http://localhost:6001/plants")
       .then((res) => res.json())
@@ -15,7 +18,7 @@ function PlantPage() {
 
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm onAddPlant={handleAddPlant} />
       <Search />
       <PlantList plants={plants} />
     </main>
