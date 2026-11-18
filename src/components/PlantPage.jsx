@@ -5,6 +5,7 @@ import Search from "./Search";
 
 function PlantPage() {
   const [plants, setPlants] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
 
 useEffect(() => {

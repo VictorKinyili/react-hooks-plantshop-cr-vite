@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function NewPlantForm({ onAddPlant }) {
   const [name, setName] = useState("");
-  const = useState("");
+  const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
 
   function handleSubmit(e) {
@@ -11,7 +11,7 @@ function NewPlantForm({ onAddPlant }) {
     const newPlant = {
       name,
       image,
-      price: parseFloat(price),
+      price,
     };
 
     fetch("http://localhost:6001/plants", {

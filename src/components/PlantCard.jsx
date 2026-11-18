@@ -4,7 +4,7 @@ function PlantCard({ plant }) {
   const { name, image, price } = plant;
   const [inStock, setInStock] = useState(true);
 
-function handleToggleStock() {
+  function handleToggleStock() {
     setInStock((prevInStock) => !prevInStock);
   }
 
@@ -13,7 +13,7 @@ function handleToggleStock() {
       <img src={image} alt={name} />
       <h4>{name}</h4>
       <p>Price: {price}</p>
-      {isInStock ? (
+      {inStock ? (
        <button className="primary" onClick={handleToggleStock}>
         In Stock
       </button>
