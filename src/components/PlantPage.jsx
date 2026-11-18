@@ -6,21 +6,26 @@ import Search from "./Search";
 function PlantPage() {
   const [plants, setPlants] = useState([]);
 
+
+useEffect(() => {
+    fetch("http://localhost:6001/plants")
+      .then((res) => res.json())
+      .then((data) => setPlants(data));
+}, []);
+
 function handleAddPlant(newPlant) {
     setPlants((prevPlants) => [...prevPlants, newPlant]);
   }
 
-  useEffect(() => {
-    fetch("http://localhost:6001/plants")
-      .then((res) => res.json())
-      .then((data) => setPlants(data));
-  }, []);
+  const displayedPlants = plants.filter((plant) =>
+    plant.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <main>
       <NewPlantForm onAddPlant={handleAddPlant} />
-      <Search />
-      <PlantList plants={plants} />
+      <Search searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+      <PlantList plants={displayedPlants} />
     </main>
   );
 }
